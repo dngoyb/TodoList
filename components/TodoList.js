@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>TodoList</title>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-		/>
-		<script src="app.js" type="module" defer></script>
-	</head>
-	<body>
-		<section class="container pt-5" id="todolist">
-			<!-- <form class="d-flex pb-4">
+/**
+ * @typedef {object} Todo
+ * @property {number} id
+ * @property {string} title
+ * @property {boolean} completed
+ */
+
+export class TodoList {
+	/**@type {Todo[]} */
+	#todos = [];
+	constructor(todos) {
+		/**
+		 * @param {Todo[]} todos
+		 */
+		this.#todos = todos;
+	}
+
+	/**
+	 *
+	 * @param {HTMLElement} element
+	 */
+	appendTo(element) {
+		element.innerHTML = `
+            <form class="d-flex pb-4">
 				<input
 					required=""
 					class="form-control"
@@ -61,7 +66,7 @@
 						</label>
 					</li>
 				</ul>
-			</main> -->
-		</section>
-	</body>
-</html>
+			</main>
+        `;
+	}
+}
