@@ -1,2 +1,2 @@
 # TodoList
-Making a todo list
+Making a todo list using a Class
