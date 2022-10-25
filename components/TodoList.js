@@ -103,6 +103,7 @@ class TodoListItem {
 		li.append(checkbox);
 		li.append(label);
 		li.append(button);
+		button.addEventListener('click', (e) => this.removeTodo(e));
 		this.#element = li;
 	}
 	/**
@@ -111,5 +112,14 @@ class TodoListItem {
 	 */
 	appendTo(element) {
 		element.append(this.#element);
+	}
+
+	/**
+	 *
+	 * @param {PointerEvent} e
+	 */
+	removeTodo(e) {
+		e.preventDefault();
+		this.#element.remove();
 	}
 }
