@@ -9,6 +9,9 @@ import { createElement } from '../functions/dom.js';
 export class TodoList {
 	/**@type {Todo[]} */
 	#todos = [];
+
+	/**@type {HTMLUListElement} */
+	#listElement = [];
 	constructor(todos) {
 		/**
 		 * @param {Todo[]} todos
@@ -62,11 +65,35 @@ export class TodoList {
 			</main>
         `;
 
-		const list = element.querySelector('.list-group');
+		this.#listElement = element.querySelector('.list-group');
 		for (const todo of this.#todos) {
 			const t = new TodoListItem(todo);
-			t.appendTo(list);
+			t.appendTo(this.#listElement);
 		}
+		element
+			.querySelector('form')
+			.addEventListener('submit', (e) => this.onSubmit(e));
+	}
+
+	/**
+	 *
+	 * @param {SubmitEvent} e
+	 */
+
+	onSubmit(e) {
+		e.preventDefault();
+		const title = new FormData(e.currentTarget).get('title').toString().trim();
+		if (title === '') {
+			return;
+		}
+		const todo = {
+			id: Date.now(),
+			title,
+			completed: false,
+		};
+
+		const item = new TodoListItem(todo);
+		item.appendTo(this.#listElement);
 	}
 }
 
