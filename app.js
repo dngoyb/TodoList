@@ -17,4 +17,5 @@ try {
 
 	alertElement.textContent = 'Unable to load elements';
 	document.body.prepend(alertElement);
+	console.error(error);
 }
