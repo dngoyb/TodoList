@@ -1,27 +1,25 @@
-import { TodoList } from './components/TodoList.js';
-import { fetchJSON } from './functions/api.js';
-import { createElement } from './functions/dom.js';
+import { TodoList } from './componebts/TodoList.js';
+import { fetchJson } from './Functions/api.js';
+import { myCreateElement } from './Functions/dom.js';
 
 try {
-	// const todos = await fetchJSON(
+	// const todos = await fetchJson(
 	// 	'https://jsonplaceholder.typicode.com/todos?_limit=5'
 	// );
-
 	const todosInStorage = localStorage.getItem('todos')?.toString();
 	let todos = [];
-
 	if (todosInStorage) {
 		todos = JSON.parse(todosInStorage);
 	}
 	const list = new TodoList(todos);
 	list.appendTo(document.querySelector('#todolist'));
 } catch (error) {
-	const alertElement = createElement('div', {
+	const alertElement = myCreateElement('div', {
 		class: 'alert alert-danger m-2',
 		role: 'alert',
 	});
 
-	alertElement.textContent = 'Unable to load elements';
+	alertElement.innerText = 'Impossible to load the elements';
 	document.body.prepend(alertElement);
-	console.error(error);
+	console.log(error);
 }
